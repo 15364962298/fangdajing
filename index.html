@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>放大镜</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_524961_sdl5bqmqkjl.css">
+    <style>
+        .img_box{
+            width:420px;
+            height: 380px;
+            margin:0 auto;
+            position: relative;
+        }
+        .area{
+            width:100px;
+            height: 100px;
+            /*background-color: rgba(255,255,255,0.5);*/
+            position: absolute;
+            top:0;
+            left:0;
+            display: none;
+            cursor: pointer;
+            border-radius:8px;
+
+        }
+        .area i{
+            font-size: 70px;
+           margin-left: 15px;
+            line-height: 100px;
+            font-weight:900 ;
+            color:red;
+        }
+        .zezhao{
+            width:100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            position: absolute;
+            top:0;
+            left:0;
+            cursor: pointer;
+        }
+        .img_box2{
+            width:300px;
+            height: 300px;
+            background: #000;
+            position: absolute;
+            top:0;
+            right:-310px;
+            background-image: url(img/beautiful.png);
+            background-size: 1260px 1140px;
+        }
+    </style>
+</head>
+<body>
+    <div class="img_box">
+        <img src="img/beautiful.png" alt="" style="width:420px;height: 380px;">
+        <div class="area">
+            <i class="iconfont icon-search"></i>
+        </div>
+        <div class="zezhao"></div>
+        <div class="img_box2"></div>
+    </div>
+</body>
+</html>
+<script>
+    let zezhao=document.querySelector(".zezhao")
+    let area=document.querySelector(".area")
+    let img_box2=document.querySelector(".img_box2")
+    console.log(zezhao,area,img_box2)
+    zezhao.onmouseenter=function(){
+        area.style.display="block"
+    }
+    zezhao.onmouseleave=function(){
+        area.style.display="none"
+    }
+    zezhao.onmousemove=function(e){
+        let x=e.offsetX-area.offsetWidth/1.5
+        let y=e.offsetY-area.offsetHeight/1.5
+        x=x<0?0:x;
+        y=x<0?0:y;
+        x=x>this.offsetWidth-area.offsetWidth?this.offsetWidth-area.offsetWidth:x;
+        y=y>this.offsetHeight-area.offsetHeight?this.offsetHeight-area.offsetHeight:y;
+        area.style=`top:${y}px;left:${x}px;display:block;`
+        img_box2.style.backgroundPosition=`${-3*x}px ${-3*y}px`
+    }
+
+</script>
